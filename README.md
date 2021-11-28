@@ -19,7 +19,7 @@ if (windows) {
 }
 ```
 
-In previous days of glory, the EAC implementation has been implemented later on, and was working perfectly fine beyond the issue on startup, hence I created this script. In the current iteration, this does not seem to be the case.
+In previous days of glory, the EAC implementation has did another check later on, and was working perfectly fine at that point, hence I created this script. In the current iteration, this does not seem to be the case. EAC only checks once on startup, does not check again, and stays opinionated on the faulty check. This workaround script is therefore not working anymore unless we find a different way, but it seems impossible.
 
 ## Usage
 Download the .sh file, place it anywhere on your PC, run it without sudo. Instructions are in there.
