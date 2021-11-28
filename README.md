@@ -2,7 +2,7 @@
 workaround for the EAC bug on linux
 
 ## What is the "SC EAC bug on linux"?
-CIG implemented EAC for Star Citizen. During their implementation, based on all observations made my @ZeroNationality in the LUG discord and me, they seemed to have made a faulty implementation on startup. To explain it in Pseudocode:
+CIG implemented EAC for Star Citizen. During their implementation, based on all observations made by @ZeroNationality in the LUG discord and myself, they seemed to have made a faulty implementation on startup. To explain it in Pseudocode:
 ```
 if (windows) {
     if (EACisWorkingCorrectly) {
