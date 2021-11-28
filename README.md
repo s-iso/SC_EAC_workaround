@@ -19,7 +19,17 @@ if (windows) {
 }
 ```
 
-In previous days of glory, the EAC implementation has did another check later on, and was working perfectly fine at that point, hence I created this script. In the current iteration, this does not seem to be the case. EAC only checks once on startup, does not check again, and stays opinionated on the faulty check. This workaround script is therefore not working anymore unless we find a different way, but it seems impossible.
+That means that the Linux version is **only allowed to start** the game if EAC checks **failed**. Meaning that we had to deliberately made the checks fail in order to play the game.
+
+This loophole has then been fixed by CIG adding another file check when the player tries to enter the Public Universe, this check was working the right way around for some unexplainable reason.
+
+That's why we let the initial check fail on purpose by choking out it's connection to the server with a "hosts fix", just to then open it up again to allow it to do another check later on that works properly.
+
+This loophole has then been fixed by the servers not allowing EAC to do a proper full check again in the menus. Meaning that EAC will only report the initial (deliberately faulty) state, without checking again later on. This means that, at this point, we're either able to enter the main menu by chocking the response, but won't be able to connect to the servers, or we're unable to start the game due to the bug in CIGs code, but would in theory be able to join the servers afterwards.
+
+The only way to fix this is by asking CIG to fix their initial loading bug. This repository serves a proof of work for anyone to test for themselves that they're able to enter the game by deliberately breaking EAC, and for documentation purposes.
+
+On top of that, there's obviously still hope that someone might come up with a different workaround based on the work I've already done, in case CIG does once again not listen to our issues of us being unable to enter the game. Given that they've been actively watching my progress step by step, I'm starting to believe that they will likely also close any further loophole we'll find, so keep your enthusiasm low if you're willing to spend time and effort into finding another workaround.
 
 ## Usage
 Download the .sh file, place it anywhere on your PC, run it without sudo. Instructions are in there.
