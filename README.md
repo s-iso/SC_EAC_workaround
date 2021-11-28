@@ -2,7 +2,7 @@
 workaround for the EAC bug on linux
 
 ## What is the "SC EAC bug on linux"?
-CIG implemented EAC for Star Citizen. During their implementation, based on all observations made by @ZeroNationality in the LUG discord and myself, they seemed to have made a faulty implementation on startup. To explain it in Pseudocode:
+CIG implemented EAC for Star Citizen. During their implementation, based on all observations made by @ZeroNationality in the LUG discord and myself, they seemed to have produced a faulty interaction with EAC on startup. To explain it in Pseudocode:
 ```
 if (windows) {
     if (EACisWorkingCorrectly) {
@@ -11,7 +11,7 @@ if (windows) {
        displayError0();
     }
 } else if (linux) {
-    if (!EACisWorkingCorrectly()) {
+    if ( ! EACisWorkingCorrectly()) {
        everythingIsAwesome();
     } else {
        displayError0();
@@ -19,17 +19,17 @@ if (windows) {
 }
 ```
 
-That means that the Linux version is **only allowed to start** the game if EAC checks **failed**. Meaning that we had to deliberately made the checks fail in order to play the game.
+This means that the Linux version is **only allowed to launch into menu** if EAC checks **failed**. Meaning that we had to deliberately made the checks fail in order to play the game.
 
-This loophole has then been fixed by CIG adding another EAC check when the player tries to enter the Public Universe, although this check was working the right way around for some unexplainable reason.
+This loophole has then been fixed by CIG, by adding another EAC check when the player tries to enter the Public Universe, although this specific "server-poll" check was working the right way around for some unexplainable reason.
 
-That's why we let the initial EAC check fail on purpose by choking out it's connection to the server with a "hosts fix", just to then open it up again to allow it to do another EAC check later on that works properly.
+That's why we let the initial EAC check fail on purpose by choking out it's connection to the server with the so called "hosts fix" (adding the url that EAC checks to `/etc/hosts`), just to then open it up again (removing that line in `/etc/hosts` again) to allow it to do the "server-poll" EAC check later on that works properly.
 
 This loophole has then been fixed by the servers not allowing EAC to do a proper full check again in the menus. Meaning that EAC will only report the initial (deliberately faulty) state, without checking again later on. This means that, at this point, we're either able to enter the main menu by chocking the response, but won't be able to connect to the servers, or we're unable to start the game due to the bug in CIGs code, but would in theory be able to join the servers afterwards.
 
-The only way to fix this is by asking CIG to fix their initial loading bug. This repository serves a proof of work for anyone to test for themselves that they're able to enter the game by deliberately breaking EAC, and for documentation purposes.
+The only way to fix this is by asking CIG to fix their initial loading bug or by reverse-engineering and modifying their code. This repository serves a proof of work for anyone to test for themselves that they're able to enter the main menu by deliberately breaking EAC, as well as documentation purposes.
 
-On top of that, there's obviously still hope that someone might come up with a different workaround based on the work I've already done, in case CIG does once again not listen to our issues of us being unable to enter the game. Given that they've been actively watching my progress step by step, I'm starting to believe that they will likely also close any further loophole we'll find, so keep your enthusiasm low if you're willing to spend time and effort into finding another workaround.
+Besides these purposes, there's obviously still hope that someone might come up with a different workaround based on the work I've already done, in case CIG does once again not listen to the issue of Linux players being unable to enter the game. Given that they've been actively watching my progress step by step without ever tackling the main bug, I'm starting to believe that they will likely also close any further loophole we'll find, so keep your enthusiasm low if you're willing to spend time and effort into finding another workaround. My current strategy is to spend my time in throwing as much evidence and proof of this bug at them as possible, in order to make the job as easy for them as possible.
 
 ## Usage
 Download the .sh file, place it anywhere on your PC, run it without sudo. Instructions are in there.
