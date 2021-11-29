@@ -25,7 +25,9 @@ This loophole has then been fixed by CIG, by adding another EAC check when the p
 
 That's why we let the initial EAC check fail on purpose by choking out it's connection to the server with the so called "hosts fix" (adding the url that EAC checks to `/etc/hosts`), just to then open it up again (removing that line in `/etc/hosts` again) to allow it to do the "server-poll" EAC check later on that works properly.
 
-This loophole has then been fixed by the servers not allowing EAC to do a proper full check again in the menus. Meaning that EAC will only report the initial (deliberately faulty) state, without checking again later on. This means that, at this point, we're either able to enter the main menu by chocking the response, but won't be able to connect to the servers, or we're unable to start the game due to the bug in CIGs code, but would in theory be able to join the servers afterwards.
+I want to heavily stress that during this time (this was the patch before they removed EAC, didn't write down the number), **EAC has shown to work properly. I would not have been able to join the persistent Universe back then if EAC had faulty behavior.** So the issue is not with EAC, but with the implementation of EAC and the actions CIG has done afterwards:
+
+This loophole has then been fixed by the servers not allowing EAC to do a proper full check again in the menu. Meaning that EAC will only report the initial (deliberately faulty) state, without checking again later on. This means that, at this point, we're either able to enter the main menu by chocking the response, but won't be able to connect to the servers, or we're unable to start the game due to the bug in CIGs code, but would in theory be able to join the servers afterwards.
 
 The only way to fix this is by asking CIG to fix their initial loading bug or by reverse-engineering and modifying their code. This repository serves a proof of work for anyone to test for themselves that they're able to enter the main menu by deliberately breaking EAC, as well as documentation purposes.
 
